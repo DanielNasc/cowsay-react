@@ -1,6 +1,6 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Home } from "./pages/Home";
-import { Speech } from "./Speech";
+import { Speech } from "./pages/Speech";
 
 export function App() {
   return (

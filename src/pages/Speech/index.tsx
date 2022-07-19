@@ -11,11 +11,19 @@ const tux = "https://live.staticflickr.com/3015/2576812640_fe00e4651a_m.jpg";
 
 export function Speech() {
   const queryParams = new URLSearchParams(useLocation().search);
-  const speech = queryParams.get("speech");
   const isTux = queryParams.get("tux") === "true";
+  let speech = queryParams.get("speech");
+
+  if (!speech) {
+    speech = isTux
+      ? "haha Linux >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> Windows"
+      : "provide a speech bro (?speech=) in the url - ..- -..- -...- - .-. ..- . / --.- ..- . .-. -.-- / .--. .- .-. .- -- ... / --. --- ---";
+  }
+
   const filtredKeys = Array.from(queryParams.keys()).filter(
     (key) => key !== "speech" && key !== "tux"
   );
+
   const animal = isTux
     ? { src: tux, name: "Tux" }
     : { src: cow, name: "Polish cow" };
