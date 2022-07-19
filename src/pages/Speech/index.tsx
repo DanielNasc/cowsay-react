@@ -1,4 +1,9 @@
 import { Link, useLocation } from "react-router-dom";
+import {
+  SpeechContainer,
+  SpeechContent,
+  WhyDoYouPutTheseParams,
+} from "./styles";
 
 /*
     this function will print a cow saying whatever is in the query params
@@ -17,7 +22,7 @@ export function Speech() {
   if (!speech) {
     speech = isTux
       ? "haha Linux >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> Windows"
-      : "provide a speech bro (?speech=) in the url - ..- -..- -...- - .-. ..- . / --.- ..- . .-. -.-- / .--. .- .-. .- -- ... / --. --- ---";
+      : "- ..- -..- -...- - .-. ..- . / --.- ..- . .-. -.-- / .--. .- .-. .- -- ... / --. --- ---";
   }
 
   const filtredKeys = Array.from(queryParams.keys()).filter(
@@ -29,30 +34,31 @@ export function Speech() {
     : { src: cow, name: "Polish cow" };
 
   return (
-    <div>
+    <SpeechContainer>
       {isTux && <h1>🏆 U find a secret congrats 🏆 </h1>}
 
-      <div>
+      <SpeechContent>
         <img src={animal.src} alt={animal.name} />
-        <p>
-          {animal.name} says: {speech}
-        </p>
+        <h2>{animal.name} says:</h2>
+        <p>{speech}</p>
         {filtredKeys.length > 0 && (
           <div>
             <p>
               Bro, why are you using the parameters below if you don't
               need???????
             </p>
-            {filtredKeys.map((key) => (
-              <p key={key}>
-                {key} <span>→</span> {queryParams.get(key)}
-              </p>
-            ))}
+            <WhyDoYouPutTheseParams>
+              {filtredKeys.map((key) => (
+                <p key={key}>
+                  {key} <span>→</span> {queryParams.get(key)}
+                </p>
+              ))}
+            </WhyDoYouPutTheseParams>
           </div>
         )}
-      </div>
 
-      <Link to="/">Voltar</Link>
-    </div>
+        <Link to="/">Voltar</Link>
+      </SpeechContent>
+    </SpeechContainer>
   );
 }

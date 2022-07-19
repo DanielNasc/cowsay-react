@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { FormContainer, HomeContainer } from "./styles";
 
 export function Home() {
   const [speech, setSpeech] = useState("");
@@ -12,8 +13,8 @@ export function Home() {
   }
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
+    <HomeContainer>
+      <FormContainer onSubmit={handleSubmit}>
         <label htmlFor="speech">Digite a fala: </label>
         <input
           type="text"
@@ -23,7 +24,7 @@ export function Home() {
           onChange={(e) => setSpeech(e.target.value)}
         />
         <button type="submit">Falar</button>
-      </form>
-    </div>
+      </FormContainer>
+    </HomeContainer>
   );
 }
