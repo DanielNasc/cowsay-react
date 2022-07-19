@@ -20,7 +20,7 @@ export const FormContainer = styled.form`
   background: ${({ theme }) => theme["gray-800"]};
 
   max-width: 32rem;
-  height: 32rem;
+  /* height: 32rem; */
 
   padding: 2rem;
 

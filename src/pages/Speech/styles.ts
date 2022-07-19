@@ -23,7 +23,6 @@ export const SpeechContent = styled.div`
   background: ${({ theme }) => theme["gray-800"]};
 
   max-width: 32rem;
-
   padding: 2rem;
 
   gap: 1rem;
@@ -33,11 +32,11 @@ export const SpeechContent = styled.div`
   }
 
   h2 {
-    font-size: 2rem;
+    font-size: 1.5rem;
   }
 
   p {
-    font-size: 1.5rem;
+    font-size: 1.25rem;
     /* break word only when it is necessary */
     word-break: break-word;
   }
@@ -45,7 +44,7 @@ export const SpeechContent = styled.div`
   a {
     text-decoration: none;
     color: ${({ theme }) => theme["pink-600"]};
-    font-size: 1.75rem;
+    font-size: 1.35rem;
   }
 `;
 
