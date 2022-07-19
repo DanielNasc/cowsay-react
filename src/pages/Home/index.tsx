@@ -22,6 +22,7 @@ export function Home() {
           id="speech"
           value={speech}
           onChange={(e) => setSpeech(e.target.value)}
+          autoComplete="off"
         />
         <button type="submit">Falar</button>
       </FormContainer>

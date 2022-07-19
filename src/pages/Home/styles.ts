@@ -1,23 +1,14 @@
 import styled from "styled-components";
 
 export const HomeContainer = styled.main`
-  /* display: flex;
-  align-items: center;
-  justify-content: center;
-
-  width: 100%;
-  height: 100vh; */
-
   display: flex;
   align-items: center;
   justify-content: center;
 
   width: 100vw;
-  height: 100vh;
+  height: calc(100vh - 4.5rem);
 
   padding: 1.5rem;
-
-  /* gap: 1rem; */
 `;
 
 export const FormContainer = styled.form`

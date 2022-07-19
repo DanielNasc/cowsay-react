@@ -7,9 +7,9 @@ export const SpeechContainer = styled.main`
   justify-content: center;
 
   width: 100%;
-  min-height: 100vh;
+  min-height: calc(100vh - 4.5rem);
 
-  padding: 2rem;
+  padding: 0 2rem;
 
   gap: 1rem;
 `;
