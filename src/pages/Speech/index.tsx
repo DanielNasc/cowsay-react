@@ -1,9 +1,8 @@
 import { Link, useLocation } from "react-router-dom";
-import {
-  SpeechContainer,
-  SpeechContent,
-  WhyDoYouPutTheseParams,
-} from "./styles";
+
+import gigacow from "../../assets/ascii/gigacow.gif";
+import { UselessParameterList } from "../../components/UselessParameterList/UselessParameterList";
+import { SpeechContainer, SpeechContent } from "./styles";
 
 /*
     this function will print a cow saying whatever is in the query params
@@ -14,48 +13,40 @@ import {
 const cow = "https://c.tenor.com/iCgOuohU11kAAAAC/dancing-polish-cow-at4am.gif";
 const tux = "https://live.staticflickr.com/3015/2576812640_fe00e4651a_m.jpg";
 
+const RESERVED_QUERY_PARAMS = ["tux", "speech", "ascii"];
+
 export function Speech() {
   const queryParams = new URLSearchParams(useLocation().search);
   const isTux = queryParams.get("tux") === "true";
+  const isAscii = queryParams.get("ascii") === "true";
   let speech = queryParams.get("speech");
 
   if (!speech) {
     speech = isTux
-      ? "haha Linux >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> Windows"
+      ? ".... .- ...- . / -.-- --- ..- / - .-. .. . -.. / .--. ..- - - .. -. --. / .- ... -.-. .. .. -...- - .-. ..- . ..--.."
       : "- ..- -..- -...- - .-. ..- . / --.- ..- . .-. -.-- / .--. .- .-. .- -- ... / --. --- ---";
   }
 
-  const filtredKeys = Array.from(queryParams.keys()).filter(
-    (key) => key !== "speech" && key !== "tux"
+  const filtredKeysAndValues = Array.from(queryParams.entries()).filter(
+    ([key]) => !RESERVED_QUERY_PARAMS.includes(key) // filter out reserved query params
   );
 
   const animal = isTux
     ? { src: tux, name: "Tux" }
-    : { src: cow, name: "Polish cow" };
+    : isAscii
+    ? { src: gigacow, name: "GigaCow" }
+    : { src: cow, name: "Polish Cow" };
 
   return (
     <SpeechContainer>
-      {isTux && <h1>🏆 U find a secret congrats 🏆 </h1>}
+      {(isTux || isAscii) && <h1>🏆 U find a secret congrats 🏆 </h1>}
 
       <SpeechContent>
         <img src={animal.src} alt={animal.name} />
         <h2>{animal.name} says:</h2>
         <p>{speech}</p>
-        {filtredKeys.length > 0 && (
-          <div>
-            <p>
-              Bro, why are you using the parameters below if you don't
-              need???????
-            </p>
-            <WhyDoYouPutTheseParams>
-              {filtredKeys.map((key) => (
-                <p key={key}>
-                  {key} <span>→</span> {queryParams.get(key)}
-                </p>
-              ))}
-            </WhyDoYouPutTheseParams>
-          </div>
-        )}
+
+        <UselessParameterList parameters={filtredKeysAndValues} />
 
         <Link to="/">Voltar</Link>
       </SpeechContent>
